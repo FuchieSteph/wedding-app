@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %} 
+{% load i18n %}
+{% load crispy_forms_tags %}  
+
+<!--Login--> 
+<div class="w-50 m-auto bg-white p-5 rounded-pill ">
+	<h1 class="text-center mb-4">{% translate 'Se connecter' %}</h1>
+		{% csrf_token %}
+		{% crispy form %}
+
+        <p class="text-center">{% blocktranslate %} Vous n'avez pas encore de compte ? <a href="/register">Créer un compte</a>. {% endblocktranslate %}</p>
+    </div>
+{% endblock %}

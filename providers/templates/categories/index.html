@@ -1,0 +1,53 @@
+{# providers/templates/providers/index.html #}
+
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% translate 'Accueil' %}{% endblock title %}
+
+{% block content %}
+
+<section class="container col-xxxl-8 px-4 pt-0">
+  <div class="row flex-lg-row-reverse align-items-center justify-content-center pt-0">
+    <div class="col-10 col-sm-8 col-lg-6 text-center">
+      <div style="background-image:url({% static 'img/test7.png' %})" class="index-hero-img"></div>
+    </div>
+    <div class="col-lg-6">
+      <h1 class="display-5 fw-bold lh-2 mb-3 text-blue">
+        {% blocktranslate %}Tout pour <br /> organiser le <span class="text-orange"> mariage</span>
+        <br /> de vos <span class="text-orange">rêves</span>{% endblocktranslate %}
+      </h1>
+      <p class="text-blue fw-bold">{% blocktranslate %}Quickly design and customize responsive mobile-first sites with Bootstrap{% endblocktranslate %}</p>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">{% translate "primary" %}</button>
+        <button type="button" class="btn btn-outline-primary btn-lg px-4">{% translate "default" %}</button>
+      </div>
+    </div>
+</section>
+
+<section class="classic-section p-5 bg-white">
+  <h2 class="text-blue mb-5">{% blocktranslate %}Trouvez le prestataire de vos rêves{% endblocktranslate %}</h2>
+
+  {% if categories %}
+
+  <div class="d-flex me-4">
+    {% for category in categories %}
+
+    <div class="d-flex col-lg-2 align-items-center text-center flex-column">
+      <a href="{% url 'providers:category' category.slug category.id %}" class="card-link fw-bold text-blue">
+        <img src="{% get_media_prefix %}{{ category.icon }}" style="width:70px;" /><br /><br />
+        {{ category.name }}
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% else %}
+  <p>{%translate "No categories are available." %}</p>
+  {% endif %}
+</section>
+
+{% endblock content %}

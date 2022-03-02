@@ -1,0 +1,84 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-02 16:58+0100\n"
+"PO-Revision-Date: 2022-03-01 01:32+0000\n"
+"Last-Translator:   <mouawadst@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.9.8\n"
+
+#: .\core\settings\base.py:82
+msgid "Anglais"
+msgstr "Anglais"
+
+#: .\core\settings\base.py:83
+msgid "Français"
+msgstr "Français"
+
+#: .\members\forms.py:23
+msgid "Submit"
+msgstr "Envoyer"
+
+#: .\members\templates\base\login.html:10 .\theme\templates\menu.html:34
+msgid "Se connecter"
+msgstr "Connexion"
+
+#: .\members\templates\base\login.html:14
+msgid ""
+" Vous n'avez pas encore de compte ? <a href=\"/register\">Créer un compte</"
+"a>. "
+msgstr ""
+
+#: .\providers\templates\categories\index.html:9
+msgid "Accueil"
+msgstr "Test"
+
+#: .\providers\templates\categories\index.html:20
+msgid ""
+"Tout pour <br /> organiser le <span class=\"text-orange\"> mariage</span>\n"
+"        <br /> de vos <span class=\"text-orange\">rêves</span>"
+msgstr ""
+
+#: .\providers\templates\categories\index.html:23
+msgid ""
+"Quickly design and customize responsive mobile-first sites with Bootstrap"
+msgstr ""
+
+#: .\providers\templates\categories\index.html:25
+msgid "primary"
+msgstr "Boutton 1"
+
+#: .\providers\templates\categories\index.html:26
+msgid "default"
+msgstr ""
+
+#: .\providers\templates\categories\index.html:32
+msgid "Trouvez le prestataire de vos rêves"
+msgstr ""
+
+#: .\providers\templates\categories\index.html:49
+msgid "No categories are available."
+msgstr ""
+
+#: .\theme\templates\menu.html:30
+msgid "Se déconnecter"
+msgstr "Déconnexion"
+
+#: .\theme\templates\menu.html:35
+msgid "S'inscrire"
+msgstr "Inscription"
+
+#~ msgid "Bonjour"
+#~ msgstr "Bonjour"

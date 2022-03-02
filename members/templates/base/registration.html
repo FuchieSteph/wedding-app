@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %} 
+
+{% load crispy_forms_tags %}         
+
+<!--Register--> 
+<div class="w-50 m-auto bg-white p-5 rounded-pill ">
+	<h1 class="text-center mb-4">Créer un compte</h1>
+		{% csrf_token %}
+		{% crispy form %}
+
+	<p class="text-center">Si vous possédez déjà un compte, <a href="/login">connectez-vous</a>.</p>
+</div>
+{% endblock %}
+
