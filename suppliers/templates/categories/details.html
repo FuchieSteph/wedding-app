@@ -1,0 +1,35 @@
+{# suppliers/templates/suppliers/index.html #}
+
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% translate 'Catégories' %}{% endblock title %}
+
+{% block content %}
+
+<section class="wrapper bg-soft-primary">
+    <div class="container pt-10 pt-md-14 text-center">
+        <div class="col-md-10 col-lg-8 col-xl-8 col-xxl-6 mx-auto" data-cues="slideInDown" data-group="page-title">
+            <h1 class="display-1 mb-4">{{ category.name }}</h1>
+            <p class="lead fs-lg px-xl-12 px-xxl-6 mb-7">{{ category.description }}</p>
+        </div>
+    </div>
+</section>
+
+<div class="container pt-10 pb-10 pt-md-14 text-center">
+    <div class="d-flex">
+        {% for supplier in category.supplier_set.all %}
+        <div class="card col-4 ms-3">
+            <img src="{% get_media_prefix %}{{ supplier.image }}" class="card-img-top" />
+            <div class="card-body">
+                {{ supplier.name }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-02 16:58+0100\n"
-"PO-Revision-Date: 2022-03-01 01:22+0000\n"
+"POT-Creation-Date: 2022-03-05 02:16+0100\n"
+"PO-Revision-Date: 2022-03-05 02:20+0000\n"
 "Last-Translator:   <mouawadst@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,66 +19,188 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.9.8\n"
 
-#: .\core\settings\base.py:82
+#: .\core\settings\base.py:96
 msgid "Anglais"
-msgstr "English"
+msgstr ""
 
-#: .\core\settings\base.py:83
+#: .\core\settings\base.py:97
 msgid "Français"
-msgstr "French"
-
-#: .\members\forms.py:23
-msgid "Submit"
-msgstr "Submit Test"
-
-#: .\members\templates\base\login.html:10 .\theme\templates\menu.html:34
-msgid "Se connecter"
 msgstr ""
 
+#: .\core\settings\base.py:104
+msgid "L'académie du mariage"
+msgstr ""
+
+#: .\core\templates\account\login.html:15
 #: .\members\templates\base\login.html:14
+msgid "Bonjour !"
+msgstr ""
+
+#: .\core\templates\account\login.html:16
+#: .\members\templates\base\login.html:15
+msgid "Connectez-vous à votre compte"
+msgstr ""
+
+#: .\core\templates\account\login.html:28
+msgid "or"
+msgstr "ou"
+
+#: .\core\templates\account\login.html:38
+#: .\core\templates\account\password_reset.html:18
+msgid "Mot de passe oublié ?"
+msgstr ""
+
+#: .\core\templates\account\login.html:39
+#: .\members\templates\base\login.html:19
+msgid " Vous n'avez pas encore de compte ? <br />"
+msgstr ""
+
+#: .\core\templates\account\login.html:39
+#: .\members\templates\base\login.html:19
+msgid "Créez un compte"
+msgstr ""
+
+#: .\core\templates\account\password_reset.html:8
+msgid "Password Reset"
+msgstr "Réeinitialiser son mot de passe"
+
+#: .\core\templates\account\password_reset.html:19
 msgid ""
-" Vous n'avez pas encore de compte ? <a href=\"/register\">Créer un compte</"
-"a>. "
+"Vous avez oublié votre mot de passe ? Entrez votre email et nous vous "
+"enverrons un email pour le reinitialiser"
 msgstr ""
 
-#: .\providers\templates\categories\index.html:9
-msgid "Accueil"
+#: .\core\templates\account\password_reset.html:24
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr ""
+"Veuillez nous contacter si vous avez des difficultés pour réinitialiser "
+"votre mot de passe. "
+
+#: .\core\templates\account\signup.html:12
+#: .\members\templates\base\registration.html:12
+msgid "Bienvenue !"
 msgstr ""
 
-#: .\providers\templates\categories\index.html:20
-msgid ""
-"Tout pour <br /> organiser le <span class=\"text-orange\"> mariage</span>\n"
-"        <br /> de vos <span class=\"text-orange\">rêves</span>"
+#: .\core\templates\account\signup.html:13
+#: .\members\templates\base\registration.html:13
+msgid "Créer un nouveau compte"
 msgstr ""
 
-#: .\providers\templates\categories\index.html:23
-msgid ""
-"Quickly design and customize responsive mobile-first sites with Bootstrap"
+#: .\core\templates\account\signup.html:17
+#: .\members\templates\base\registration.html:17
+msgid " Si vous possédez déjà un compte,"
 msgstr ""
 
-#: .\providers\templates\categories\index.html:25
-msgid "primary"
+#: .\core\templates\account\signup.html:18
+#: .\members\templates\base\registration.html:18
+msgid "connectez-vous"
 msgstr ""
 
-#: .\providers\templates\categories\index.html:26
-msgid "default"
-msgstr ""
-
-#: .\providers\templates\categories\index.html:32
-msgid "Trouvez le prestataire de vos rêves"
-msgstr ""
-
-#: .\providers\templates\categories\index.html:49
-msgid "No categories are available."
-msgstr ""
-
-#: .\theme\templates\menu.html:30
+#: .\core\templates\menu.html:31
 msgid "Se déconnecter"
 msgstr ""
 
-#: .\theme\templates\menu.html:35
+#: .\core\templates\menu.html:36
+msgid "Se connecter"
+msgstr ""
+
+#: .\core\templates\menu.html:37
 msgid "S'inscrire"
 msgstr ""
 
-#~ msgid "Bonjour"
-#~ msgstr "Hello"
+#: .\core\templates\socialaccount\login.html:16
+#, python-format
+msgid "Connect %(provider)s"
+msgstr ""
+
+#: .\core\templates\socialaccount\login.html:17
+#, python-format
+msgid "You are about to connect a new third party account from %(provider)s."
+msgstr ""
+
+#: .\core\templates\socialaccount\login.html:19
+#, python-format
+msgid "Sign In Via %(provider)s"
+msgstr ""
+
+#: .\core\templates\socialaccount\login.html:20
+#, python-format
+msgid ""
+"You are about to sign in using a third party account from %(provider)s."
+msgstr ""
+
+#: .\core\templates\socialaccount\login.html:25
+msgid "Continue"
+msgstr "Continuer"
+
+#: .\members\forms.py:25
+msgid "Submit"
+msgstr "Envoyer"
+
+#: .\members\forms.py:34
+msgid "Aide"
+msgstr ""
+
+#: .\members\forms.py:77
+msgid "Reset My Password"
+msgstr "Réeinitialiser mon mot de passe"
+
+#: .\suppliers\templates\categories\index.html:9
+msgid "Accueil"
+msgstr ""
+
+#: .\suppliers\templates\categories\index.html:23
+msgid ""
+"Tout pour <br /> organiser le <span class=\"text-orange\"> mariage</span>\n"
+"          <br /> de vos <span class=\"text-orange\">rêves</span>"
+msgstr ""
+
+#: .\suppliers\templates\categories\index.html:26
+msgid ""
+"Retrouvez toutes les ressources pour organiser un mariage\n"
+"          parfait."
+msgstr ""
+
+#: .\suppliers\templates\categories\index.html:63
+msgid ""
+"Organiser votre mariage n'aura jamais été aussi\n"
+"          simple"
+msgstr ""
+
+#: .\suppliers\templates\categories\index.html:70
+msgid "Trouvez vos prestataires"
+msgstr ""
+
+#: .\suppliers\templates\categories\index.html:71
+msgid ""
+"Choisissez vos prestataires parmi une liste complète triée par catégorie\n"
+"              et par région, sauvegardez-les et partagez votre sélection avec vos proches."
+msgstr ""
+
+#: .\suppliers\templates\categories\index.html:80
+msgid "Créez et gérez votre liste d'invités"
+msgstr ""
+
+#: .\suppliers\templates\categories\index.html:81
+msgid ""
+"Créez vos listes d'invités, envoyez vos invitations virtuelles et créez\n"
+"              votre plan de table."
+msgstr ""
+
+#: .\suppliers\templates\categories\index.html:90
+msgid "Préparez votre mariage au jour le jour"
+msgstr ""
+
+#: .\suppliers\templates\categories\index.html:91
+msgid ""
+"Créez votre checklist personnalisée ou non et soyez prêt pour le jour J\n"
+"              ! "
+msgstr ""
+
+#: .\suppliers\templates\categories\index.html:98
+msgid "Trouvez le prestataire de vos rêves"
+msgstr ""
+
+#: .\suppliers\templates\categories\index.html:115
+msgid "No categories are available."
+msgstr "Aucune catégorie de disponible"

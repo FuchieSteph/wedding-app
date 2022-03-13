@@ -1,17 +1,24 @@
-{% extends 'base.html' %}
+{% extends 'base-simple.html' %}
 
 {% load static %}
-{% block content %} 
+{% block content %}
+{% load i18n %}
+{% load crispy_forms_tags %}
 
-{% load crispy_forms_tags %}         
+<!--Register-->
+<section class="wrapper bg-light mt-5 shadow">
+	<div class="d-flex">
+		<div class="col-lg-6 py-10 px-5">
+			<h1 class="text-center mb-4">{% translate 'Bienvenue !' %}</h1>
+			<p class="text-center">{% translate "Créer un nouveau compte" %}</p>
+				{% csrf_token %}
+				{% crispy form %}
 
-<!--Register--> 
-<div class="w-50 m-auto bg-white p-5 rounded-pill ">
-	<h1 class="text-center mb-4">Créer un compte</h1>
-		{% csrf_token %}
-		{% crispy form %}
-
-	<p class="text-center">Si vous possédez déjà un compte, <a href="/login">connectez-vous</a>.</p>
-</div>
+				<p class="text-center">{% blocktranslate %} Si vous possédez déjà un compte,{% endblocktranslate %} <a
+						href="{% url 'members:login' %}">{% translate "connectez-vous" %}</a></p>
+		</div>
+		<img class="col-lg-6 object-cover" src="{% static 'img/assets/register.jpg' %}"
+			srcset="{% static 'img/assets/register.jpg' %} 2x" alt="" />
+	</div>
+</section>
 {% endblock %}
-

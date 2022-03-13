@@ -1,16 +1,23 @@
-{% extends 'base.html' %}
+{% extends 'base-simple.html' %}
 
 {% load static %}
-{% block content %} 
+{% block content %}
 {% load i18n %}
-{% load crispy_forms_tags %}  
+{% load crispy_forms_tags %}
 
-<!--Login--> 
-<div class="w-50 m-auto bg-white p-5 rounded-pill ">
-	<h1 class="text-center mb-4">{% translate 'Se connecter' %}</h1>
-		{% csrf_token %}
-		{% crispy form %}
+<!--Login-->
+<section class="wrapper bg-light mt-7 shadow">
+	<div class="d-flex align-items-center">
+		<img class="col-lg-6 object-cover" src="{% static 'img/assets/login.jpg' %}"
+					srcset="{% static 'img/assets/login.jpg' %} 2x" alt="" />
+		<div class="col-lg-6 py-10 px-5">
+			<h1 class="text-center mb-4">{% translate 'Bonjour !' %}</h1>
+			<p class="text-center">{% translate "Connectez-vous à votre compte" %}
+			{% csrf_token %}
+			{% crispy form %}
 
-        <p class="text-center">{% blocktranslate %} Vous n'avez pas encore de compte ? <a href="/register">Créer un compte</a>. {% endblocktranslate %}</p>
-    </div>
+			<p class="text-center">{% blocktranslate %} Vous n'avez pas encore de compte ? <br />{% endblocktranslate %} <a href="{% url 'accounts:register' %}">{% translate "Créez un compte" %}</a></p>
+		</div>
+	</div>
+</section>
 {% endblock %}

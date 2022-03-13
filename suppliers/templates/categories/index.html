@@ -1,0 +1,120 @@
+{# suppliers/templates/suppliers/index.html #}
+
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% translate 'Accueil' %}{% endblock title %}
+
+{% block content %}
+
+<!-- ----------------------------------------------------------------------- -->
+<!--                               Hero Banner                               -->
+<!-- ----------------------------------------------------------------------- -->
+
+<section class="wrapper bg-soft-primary">
+  <div class="container pt-10 pt-md-14">
+    <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
+      <div class="col-md-10 offset-md-1 offset-lg-0 col-lg-6 text-center text-lg-start order-2 order-lg-0"
+        data-cues="slideInDown" data-group="page-title" data-delay="600">
+        <h1 class="display-1 mb-5 mx-md-n5 mx-lg-0">
+          {% blocktranslate %}Tout pour <br /> organiser le <span class="text-orange"> mariage</span>
+          <br /> de vos <span class="text-orange">rêves</span>{% endblocktranslate %}
+        </h1>
+        <p class="lead fs-lg mb-7">{% blocktranslate %}Retrouvez toutes les ressources pour organiser un mariage
+          parfait.{% endblocktranslate %}</p>
+
+          <div class="d-flex">
+            <div class="form-floating mb-4 me-3">
+              <input id="textInputExample" type="text" class="form-control" placeholder="Text Input">
+              <label for="textInputExample">Je recherche...</label>
+            </div>
+            <div class="form-floating mb-4 me-3">
+              <input id="textInputExample" type="text" class="form-control" placeholder="Text Input">
+              <label for="textInputExample">Où</label>
+            </div>
+            <a href="#" class="btn btn-circle btn-primary btn-lg"><i class="uil uil-search"></i></a>
+          </div>
+          
+      </div>
+      <div class="col-lg-6" data-cue="slideInDown">
+        <figure><img class="w-auto" src="{% static 'img/assets/test15.png' %}"
+            srcset="{% static 'img/assets/hero.png' %}" alt="" /></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrapper bg-light">
+  <div class="container pt-14 pt-md-16 pb-9 pb-md-11 pb-md-17">
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!--                                Features                                 -->
+    <!-- ----------------------------------------------------------------------- -->
+
+    <div class="row gx-lg-8 gx-xl-12 gy-10 mb-14 mb-md-17 align-items-center">
+      <div class="col-lg-7">
+        <figure><img class="w-auto" src="{% static 'img/assets/test10.png' %}"
+            srcset="{% static 'img/assets/index_features.png' %}" alt="" /></figure>
+      </div>
+      <div class="col-lg-5">
+        <h3 class="display-4 mb-7">{% blocktranslate %}Organiser votre mariage n'aura jamais été aussi
+          simple{% endblocktranslate %}</h3>
+        <div class="d-flex flex-row mb-6">
+          <div>
+            <span class="icon btn btn-circle btn-soft-primary disabled me-5"><span class="number fs-18">1</span></span>
+          </div>
+          <div>
+            <h4 class="mb-1">{% blocktranslate %}Trouvez vos prestataires{% endblocktranslate %}</h4>
+            <p class="mb-0">{% blocktranslate %}Choisissez vos prestataires parmi une liste complète triée par catégorie
+              et par région, sauvegardez-les et partagez votre sélection avec vos proches.{% endblocktranslate %}</p>
+          </div>
+        </div>
+        <div class="d-flex flex-row mb-6">
+          <div>
+            <span class="icon btn btn-circle btn-soft-primary disabled me-5"><span class="number fs-18">2</span></span>
+          </div>
+          <div>
+            <h4 class="mb-1">{% blocktranslate %}Créez et gérez votre liste d'invités{% endblocktranslate %}</h4>
+            <p class="mb-0">{% blocktranslate %}Créez vos listes d'invités, envoyez vos invitations virtuelles et créez
+              votre plan de table.{% endblocktranslate %}</p>
+          </div>
+        </div>
+        <div class="d-flex flex-row">
+          <div>
+            <span class="icon btn btn-circle btn-soft-primary disabled me-5"><span class="number fs-18">3</span></span>
+          </div>
+          <div>
+            <h4 class="mb-1">{% blocktranslate %}Préparez votre mariage au jour le jour{% endblocktranslate %}</h4>
+            <p class="mb-0">{% blocktranslate %}Créez votre checklist personnalisée ou non et soyez prêt pour le jour J
+              ! {% endblocktranslate %}</p>
+          </div>
+        </div>
+      </div>
+     </div>
+
+    <h2 class="mb-5">{% blocktranslate %}Trouvez le prestataire de vos rêves{% endblocktranslate %}</h2>
+
+    {% if categories %}
+
+    <div class="d-flex me-4">
+      {% for category in categories %}
+
+      <div class="d-flex col-lg-2 align-items-center text-center flex-column">
+        <a href="{% url 'suppliers:category' category.slug category.id %}" class="card-link fw-bold">
+          <img src="{% get_media_prefix %}{{ category.icon }}" style="width:70px;" /><br /><br />
+          {{ category.name }}
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% else %}
+    <p>{%translate "No categories are available." %}</p>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock content %}

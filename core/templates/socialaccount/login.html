@@ -1,0 +1,31 @@
+{% extends 'base-simple.html' %}
+
+{% load static %}
+{% block content %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load account socialaccount %}
+
+<!--Login-->
+<section class="wrapper bg-light mt-7 shadow">
+	<div class="d-flex align-items-center">
+		<img class="col-lg-6 object-cover" src="{% static 'img/assets/login.jpg' %}"
+					srcset="{% static 'img/assets/login.jpg' %} 2x" alt="" />
+		<div class="col-lg-6 py-10 px-5">
+            {% if process == "connect" %}
+            <h1 class="text-center">{% blocktrans with provider.name as provider %}Connect {{ provider }}{% endblocktrans %}</h1>
+            <p class="text-center">{% blocktrans with provider.name as provider %}You are about to connect a new third party account from {{ provider }}.{% endblocktrans %}</p>
+            {% else %}
+            <h1 class="text-center">{% blocktrans with provider.name as provider %}Sign In Via {{ provider }}{% endblocktrans %}</h1>
+            <p class="text-center">{% blocktrans with provider.name as provider %}You are about to sign in using a third party account from {{ provider }}.{% endblocktrans %}</p>
+            {% endif %}
+
+                <form method="post" class="text-center">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary btn btn-primary rounded-pill btn-sm">{% trans "Continue" %}</button>
+                  </form>
+
+		</div>
+	</div>
+</section>
+{% endblock %}

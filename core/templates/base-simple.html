@@ -1,0 +1,72 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TEST Django Community App -
+        {% block title %}
+        {% endblock title %}
+    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="nofollow">
+    <meta name="googlebot" content="noindex">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body class="bg-soft-primary">
+    
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        test error
+        {% include "messages/errors.html" %}
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        test succès
+        {% include "messages/success.html" %}
+        {% endif %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="col-8 mx-auto p-5 ">
+
+        <a href="/" class="d-flex mb-5 justify-content-center align-items-center">
+            <div class="bg-orange p-1">
+                <svg class="inline" width="27" height="24" viewBox="0 0 27 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M24.2293 2.50543C22.8159 1.08837 20.9424 0.223482 18.9471 0.0669889C16.9518 -0.0895046 14.9663 0.472717 13.3493 1.6521C11.6529 0.390279 9.54132 -0.181889 7.43989 0.050812C5.33846 0.283513 3.40325 1.3038 2.02396 2.90621C0.644668 4.50862 -0.0762445 6.57412 0.00639387 8.68678C0.0890323 10.7994 0.969083 12.8023 2.46933 14.2921L10.7493 22.5854C11.4427 23.2678 12.3765 23.6502 13.3493 23.6502C14.3221 23.6502 15.256 23.2678 15.9493 22.5854L24.2293 14.2921C25.7861 12.7258 26.6599 10.6071 26.6599 8.39876C26.6599 6.1904 25.7861 4.07174 24.2293 2.50543Z"
+                        fill="white" /></svg>
+            </div>
+            <div class="ms-2 fw-bold">{{settings.SITENAME}}</div>
+        </a>
+    
+    {% block content %}
+    {% endblock content %}
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/theme-simple.js' %}"></script>
+
+    <style>
+        .popover{
+            max-width: 500px; 
+        }
+    </style>
+</body>
+
+</html>
