@@ -2,7 +2,17 @@
     object-fit: cover;
 }
 .card-img-top {
-    height: 230px;
+    height: 350px;
     width: 100%;
+    border-radius:5px;
     object-fit: cover;
+}
+.supplier-card {
+    width:33%;
+    background:transparent;
+    cursor: pointer;
+}
+.supplier-card h5 {
+    text-align:left;
+    margin-bottom: 0px;
 }

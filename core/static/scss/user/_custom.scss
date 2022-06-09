@@ -2,7 +2,36 @@
     object-fit: cover;
 }
 .card-img-top {
-    height: 230px;
+    height: 250px;
     width: 100%;
+    border-radius:5px;
     object-fit: cover;
+}
+.supplier-card {
+    width:33%;
+    background:transparent;
+    cursor: pointer;
+}
+.supplier-card h5 {
+    text-align:left;
+    margin-bottom: 0px;
+}
+.expand_caret {
+    transform: scale(1.6);
+    margin-left: 8px;
+    display:inline-block;
+    margin-top: -4px;
+    border:3px solid transparent;
+    border-top-color: #60697b;
+    cursor:pointer;
+}
+span[aria-expanded='false'], span[aria-expanded='true'] {
+    cursor:pointer;
+}
+span[aria-expanded='false'] > .expand_caret {
+    transform: scale(1.6) rotate(-180deg);
+    margin-bottom:5px;
+}
+select {
+    cursor:pointer;
 }

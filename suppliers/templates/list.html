@@ -1,0 +1,245 @@
+{# suppliers/templates/suppliers/index.html #}
+
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+
+{% load static %}
+{% load i18n %}
+{% load mptt_tags %}
+
+{% block title %}{% translate 'Catégories' %}{% endblock title %}
+
+{% block content %}
+
+    <form method="GET" style="display:none;">
+    {{ suppliers_filters.form }}
+    <input type="submit" />
+    </form>
+
+    <section class="wrapper bg-soft-primary">
+        <div class="container py-3 py-md-5">
+          <nav class="d-inline-block" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item"><a href="../">{% translate "Accueil" %}</a></li>
+              
+              {% if category.parent != '' %}
+
+              {% for node in category.get_ancestors %}
+              
+              <li class="breadcrumb-item"><a href="{% url 'suppliers:category' node.slug node.id %}">{{node.name}}</a></li>
+              {% endfor %}
+
+              {% endif %}
+
+              <li class="breadcrumb-item active" aria-current="page">{{ category.name }}</li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+
+      <section class="wrapper bg-light">
+        <div class="container pb-14 pb-md-16 pt-12">
+          <div class="row gy-10">
+            <div class="col-lg-9 order-lg-2">
+              <div class="row align-items-center mb-10 position-relative zindex-1">
+                <div class="col-md-7 col-xl-8 pe-xl-20">
+                  <h2 class="display-6 mb-1">{% translate 'Liste des prestataires' %}</h2>
+                  <p class="mb-0 text-muted">{% translate 'Affichage de' %} {{ suppliers.start_index }}-{{ suppliers.end_index }} {% translate 'de' %} {{ suppliers.paginator.count }} {% translate 'résultats' %}</p>
+                </div>
+                <div class="col-md-5 col-xl-4 ms-md-auto text-md-end mt-5 mt-md-0">
+                  <div class="form-select-wrapper">
+                    <select class="form-select" id="sortBy">
+                      <option value="name">{% translate 'Trier par nom' %}</option>
+                      <option value="pk">{% translate 'Trier par date d\'ajout' %}</option>
+                      <option value="price_range">{% translate 'Trier par catégorie de prix croissant' %}</option>
+                      <option value="-price_range">{% translate 'Trier par catégorie de prix décroissant' %}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="grid grid-view projects-masonry shop mb-13">
+                <div class="row gx-md-8 gy-10 gy-md-13 isotope">
+                    {% for supplier in suppliers %}
+                    <div class="project item col-md-6 col-xl-4">
+                        <figure class="rounded mb-6">
+                          <img src="{{ supplier.image }}" alt="" loading="lazy" />
+                          <a class="item-like" href="#" data-id="{{ supplier.pk }}" data-bs-toggle="white-tooltip" title="Add to wishlist"><i class="uil uil-heart"></i></a>
+                          <a class="item-view" href="#" data-id="{{ supplier.pk }}" data-bs-toggle="white-tooltip" title="Quick view"><i class="uil uil-eye"></i></a>
+                          <a href="{% url 'suppliers:supplier' supplier.slug supplier.pk %}" class="item-cart"><i class="uil uil-eye"></i> Voir</a>
+                        </figure>
+                        <div class="post-header">
+                          <div class="d-flex flex-row align-items-center justify-content-between mb-2">
+                            <div class="post-category text-ash mb-0">{{ supplier.category.name }}</div>
+                            {{ supplier.city }}
+                          </div>
+                          <h3 class="post-title h3 fs-18"><a href="{% url 'suppliers:supplier' supplier.slug supplier.pk %}" class="link-dark">{{ supplier.name }}</a></h3>
+                          <p class="price"><ins><span class="amount">{{ supplier.price_range }}</span></ins></p>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+              </div>
+              <nav class="d-flex" aria-label="pagination">
+                {% include "partials/pagination.html" with obj=suppliers %}
+              </nav>
+            </div>
+
+            <aside class="col-lg-3 sidebar">
+              <div class="widget mt-1">
+                <h4 class="widget-title mb-3">{% translate 'Catégories' %}</h4>
+                <ul class="list-unstyled ps-0">
+
+                    {% recursetree categories %}
+
+                    {% if node.is_root_node and not node.is_leaf_node %}
+                    <li class="mb-1">
+                        <span class="align-items-center rounded link-body" data-bs-toggle="collapse" data-bs-target="#{{node.slug}}-childrens" {% if category.pk == node.pk or category.parent_id == node.pk %} aria-expanded="true" {% else %} aria-expanded="false" {% endif %}">
+                        {{node.name}} <span class="fs-sm text-muted ms-1">({{ node.count }})
+                        </span>
+                        <div class="expand_caret caret"></div>
+                    </li>
+                    {% else %}
+                        {% if category.pk == node.pk %} 
+                        <li class="mb-1 active">
+                            <strong class="active text-primary">{{node.name}} <span class="fs-sm text-muted ms-1">({{ node.count }})</strong>
+                        {% else %}
+                        <li class="mb-1">
+                        <a href="{% url 'suppliers:category' node.slug node.id %}" class="align-items-center rounded link-body">
+                        {{node.name}} <span class="fs-sm text-muted ms-1">({{ node.count }})
+                        </a>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if not node.is_leaf_node %}
+                            <ul class="children list-unstyled ms-5 {% if category.pk == node.pk or category.parent_id == node.pk %} show {% else %} collapse {% endif %}" id="{{node.slug}}-childrens">
+                                {{ children }}
+                            </ul>
+                    {% endif %}
+                    </li>
+                    {% endrecursetree %}
+                </ul>
+              </div>
+              <!-- /.widget -->
+              <div class="widget">
+                <h4 class="widget-title mb-3">Rating</h4>
+                <div class="form-check mb-1">
+                  <input class="form-check-input" type="radio" name="rating" id="rating5" checked>
+                  <label class="form-check-label" for="rating5">
+                    <span class="ratings five"></span>
+                  </label>
+                </div>
+                <!-- /.form-check -->
+                <div class="form-check mb-1">
+                  <input class="form-check-input" type="radio" name="rating" id="rating4">
+                  <label class="form-check-label" for="rating4">
+                    <span class="ratings four"></span>
+                  </label>
+                </div>
+                <!-- /.form-check -->
+                <div class="form-check mb-1">
+                  <input class="form-check-input" type="radio" name="rating" id="rating3">
+                  <label class="form-check-label" for="rating3">
+                    <span class="ratings three"></span>
+                  </label>
+                </div>
+                <!-- /.form-check -->
+                <div class="form-check mb-1">
+                  <input class="form-check-input" type="radio" name="rating" id="rating2">
+                  <label class="form-check-label" for="rating2">
+                    <span class="ratings two"></span>
+                  </label>
+                </div>
+                <!-- /.form-check -->
+                <div class="form-check mb-1">
+                  <input class="form-check-input" type="radio" name="rating" id="rating1">
+                  <label class="form-check-label" for="rating1">
+                    <span class="ratings one"></span>
+                  </label>
+                </div>
+                <!-- /.form-check -->
+              </div>
+              <!-- /.widget -->
+              <div class="widget">
+     <!-- http://127.0.0.1:8000/fr/suppliers/uncommon-places/7?name=&city=&country=&caterer_free=unknown&brewer_free=unknown&furnitures_included=unknown&dishes_included=unknown&gite_included=unknown&corkage_fee=unknown&buffet=unknown&echoppes=unknown&menu=unknown&category=&type=&o= -->
+
+                <h4 class="widget-title mb-3">Type</h4>
+                {% if category.type == 'caterer' %}
+                
+                <div class="filter-options">
+                  <div class="form-check mb-1">
+                    <input class="form-check-input" type="checkbox" id="menu">
+                    <label class="form-check-label" for="menu">Menu</label>
+                  </div>
+
+                  <div class="form-check mb-1">
+                    <input class="form-check-input" type="checkbox" id="buffet">
+                    <label class="form-check-label" for="buffet">Buffet</label>
+                  </div>
+                  
+                  <div class="form-check mb-1">
+                    <input class="form-check-input" type="checkbox" id="echoppes">
+                    <label class="form-check-label" for="echoppes">Echoppes</label>
+                  </div>
+
+                  <div class="form-check mb-1">
+                    <input class="form-check-input" type="checkbox" id="dishes_included">
+                    <label class="form-check-label" for="dishes_included">Vaisselle incluse</label>
+                  </div>
+                </div>
+                {% endif %}
+
+                <div class="form-check mb-1">
+                  <input class="form-check-input" type="checkbox" id="s">
+                  <label class="form-check-label" for="s">S <span class="fs-sm text-muted ms-1">(253)</span></label>
+                </div>
+                <div class="form-check mb-1">
+                  <input class="form-check-input" type="checkbox" id="m">
+                  <label class="form-check-label" for="m">M <span class="fs-sm text-muted ms-1">(65)</span></label>
+                </div>
+                <div class="form-check mb-1">
+                  <input class="form-check-input" type="checkbox" id="l">
+                  <label class="form-check-label" for="l">L <span class="fs-sm text-muted ms-1">(156)</span></label>
+                </div>
+                <div class="form-check mb-1">
+                  <input class="form-check-input" type="checkbox" id="xl">
+                  <label class="form-check-label" for="xl">XL <span class="fs-sm text-muted ms-1">(74)</span></label>
+                </div>
+              </div>
+              <!-- /.widget -->
+              <div class="widget">
+                <h4 class="widget-title mb-3">Price</h4>
+                <div class="form-check mb-1">
+                  <input class="form-check-input" type="radio" name="price" id="price1" checked>
+                  <label class="form-check-label" for="price1">€</label>
+                </div>
+                <!-- /.form-check -->
+                <div class="form-check mb-1">
+                  <input class="form-check-input" type="radio" name="price" id="price2">
+                  <label class="form-check-label" for="price2">€€</label>
+                </div>
+                <!-- /.form-check -->
+                <div class="form-check mb-1">
+                  <input class="form-check-input" type="radio" name="price" id="price3">
+                  <label class="form-check-label" for="price3">€€€</label>
+                </div>
+                <!-- /.form-check -->
+                <div class="row">
+                  <div class="col-7 col-md-5 col-lg-12 col-xl-10 col-xxl-10">
+                    <div class="d-flex align-items-center mt-4">
+                      <input type="number" class="form-control form-control-sm" placeholder="$0.00" min="0">
+                      <div class="text-muted mx-2">‒</div>
+                      <input type="number" class="form-control form-control-sm" placeholder="$50.00" max="50">
+                    </div>
+                  </div>
+                  <!-- /column -->
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- /.widget -->
+            </aside>
+          </div>
+        </div>
+      </section>
+
+
+{% endblock content %}

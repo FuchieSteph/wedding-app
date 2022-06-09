@@ -1,43 +1,128 @@
 {% load static %}
 {% load i18n %}
 
-<header class="bg-soft-primary">
-  <nav class="navbar navbar-expand-lg center-nav transparent navbar-light caret-none">
-    <div class="container flex-lg-row flex-nowrap align-items-center">
-
-      <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-        <div class="bg-orange p-1"><svg class="inline" width="27" height="24" viewBox="0 0 27 24" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M24.2293 2.50543C22.8159 1.08837 20.9424 0.223482 18.9471 0.0669889C16.9518 -0.0895046 14.9663 0.472717 13.3493 1.6521C11.6529 0.390279 9.54132 -0.181889 7.43989 0.050812C5.33846 0.283513 3.40325 1.3038 2.02396 2.90621C0.644668 4.50862 -0.0762445 6.57412 0.00639387 8.68678C0.0890323 10.7994 0.969083 12.8023 2.46933 14.2921L10.7493 22.5854C11.4427 23.2678 12.3765 23.6502 13.3493 23.6502C14.3221 23.6502 15.256 23.2678 15.9493 22.5854L24.2293 14.2921C25.7861 12.7258 26.6599 10.6071 26.6599 8.39876C26.6599 6.1904 25.7861 4.07174 24.2293 2.50543Z"
-              fill="white" /></svg></div>
-        <div class="ms-2 fw-bold">{{settings.SITENAME}}</div>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
-        aria-controls="offcanvasScrolling">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-md-around" id="navbarTogglerDemo02">
-        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 fw-bold">
-          <li><a href="#" class="nav-link px-2">Home</a></li>
-          <li><a href="#" class="nav-link px-2">Features</a></li>
-          <li><a href="#" class="nav-link px-2">Pricing</a></li>
-          <li><a href="#" class="nav-link px-2">FAQs</a></li>
-          <li><a href="#" class="nav-link px-2">About</a></li>
-        </ul>
-        {% if user.is_authenticated %}
-        <div>
-          Bonjour, <span class="fw-bold">{{ user.get_username }}</span>
-          <a href="{% url 'account_logout' %}" class="btn btn-outline-primary ms-2">{% translate "Se déconnecter" %}</a>
+<header class="wrapper bg-soft-primary">
+  <nav class="navbar navbar-expand-lg fancy navbar-light navbar-bg-light caret-none">
+    <div class="container">
+      <div class="navbar-collapse-wrapper bg-white d-flex flex-row flex-nowrap w-100 justify-content-between align-items-center">
+        <div class="navbar-brand w-100">
+          <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <div class="bg-orange p-1"><svg class="inline" width="27" height="24" viewBox="0 0 27 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M24.2293 2.50543C22.8159 1.08837 20.9424 0.223482 18.9471 0.0669889C16.9518 -0.0895046 14.9663 0.472717 13.3493 1.6521C11.6529 0.390279 9.54132 -0.181889 7.43989 0.050812C5.33846 0.283513 3.40325 1.3038 2.02396 2.90621C0.644668 4.50862 -0.0762445 6.57412 0.00639387 8.68678C0.0890323 10.7994 0.969083 12.8023 2.46933 14.2921L10.7493 22.5854C11.4427 23.2678 12.3765 23.6502 13.3493 23.6502C14.3221 23.6502 15.256 23.2678 15.9493 22.5854L24.2293 14.2921C25.7861 12.7258 26.6599 10.6071 26.6599 8.39876C26.6599 6.1904 25.7861 4.07174 24.2293 2.50543Z"
+                  fill="white" /></svg></div>
+            <div class="ms-2 fw-bold">{{settings.SITENAME}}</div>
+          </a>
         </div>
-        {% else %}
-        <div>
-          <a href="{% url 'account_login' %}" type="button"
-            class="btn btn-outline-primary me-2">{% translate 'Se connecter' %}</a>
-          <a href="{% url 'account_signup' %}" class="btn btn-primary">{% translate "S'inscrire" %}</a>
+        <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
+          <div class="offcanvas-header d-lg-none">
+            <h3 class="text-white fs-30 mb-0">Sandbox</h3>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body ms-lg-auto d-flex flex-column h-100">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Pages</a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Services</a>
+                    <ul class="dropdown-menu">
+                      <li class="nav-item"><a class="dropdown-item" href="./services.html">Services I</a></li>
+                      <li class="nav-item"><a class="dropdown-item" href="./services2.html">Services II</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">About</a>
+                    <ul class="dropdown-menu">
+                      <li class="nav-item"><a class="dropdown-item" href="./about.html">About I</a></li>
+                      <li class="nav-item"><a class="dropdown-item" href="./about2.html">About II</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Shop</a>
+                    <ul class="dropdown-menu">
+                      <li class="nav-item"><a class="dropdown-item" href="./shop.html">Shop I</a></li>
+                      <li class="nav-item"><a class="dropdown-item" href="./shop2.html">Shop II</a></li>
+                      <li class="nav-item"><a class="dropdown-item" href="./shop-product.html">Product Page</a></li>
+                      <li class="nav-item"><a class="dropdown-item" href="./shop-cart.html">Shopping Cart</a></li>
+                      <li class="nav-item"><a class="dropdown-item" href="./shop-checkout.html">Checkout</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Contact</a>
+                    <ul class="dropdown-menu">
+                      <li class="nav-item"><a class="dropdown-item" href="./contact.html">Contact I</a></li>
+                      <li class="nav-item"><a class="dropdown-item" href="./contact2.html">Contact II</a></li>
+                      <li class="nav-item"><a class="dropdown-item" href="./contact3.html">Contact III</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Career</a>
+                    <ul class="dropdown-menu">
+                      <li class="nav-item"><a class="dropdown-item" href="./career.html">Job Listing I</a></li>
+                      <li class="nav-item"><a class="dropdown-item" href="./career2.html">Job Listing II</a></li>
+                      <li class="nav-item"><a class="dropdown-item" href="./career-job.html">Job Description</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Utility</a>
+                    <ul class="dropdown-menu">
+                      <li class="nav-item"><a class="dropdown-item" href="./404.html">404 Not Found</a></li>
+                      <li class="nav-item"><a class="dropdown-item" href="./page-loader.html">Page Loader</a></li>
+                      <li class="nav-item"><a class="dropdown-item" href="./signin.html">Sign In I</a></li>
+                      <li class="nav-item"><a class="dropdown-item" href="./signin2.html">Sign In II</a></li>
+                      <li class="nav-item"><a class="dropdown-item" href="./signup.html">Sign Up I</a></li>
+                      <li class="nav-item"><a class="dropdown-item" href="./signup2.html">Sign Up II</a></li>
+                      <li class="nav-item"><a class="dropdown-item" href="./terms.html">Terms</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item"><a class="dropdown-item" href="./pricing.html">Pricing</a></li>
+                  <li class="nav-item"><a class="dropdown-item" href="./onepage.html">One Page</a></li>
+                </ul>
+              </li>
+            </ul>
+            <!-- /.navbar-nav -->
+            <div class="offcanvas-footer d-lg-none">
+              <div>
+                <a href="mailto:first.last@email.com" class="link-inverse">info@email.com</a>
+                <br /> 00 (123) 456 78 90 <br />
+                <nav class="nav social social-white mt-4">
+                  <a href="#"><i class="uil uil-twitter"></i></a>
+                  <a href="#"><i class="uil uil-facebook-f"></i></a>
+                  <a href="#"><i class="uil uil-dribbble"></i></a>
+                  <a href="#"><i class="uil uil-instagram"></i></a>
+                  <a href="#"><i class="uil uil-youtube"></i></a>
+                </nav>
+                <!-- /.social -->
+              </div>
+            </div>
+            <!-- /.offcanvas-footer -->
+          </div>
+          <!-- /.offcanvas-body -->
         </div>
-        {% endif %}
+        <!-- /.navbar-collapse -->
+        <div class="navbar-other w-100 d-flex ms-auto">
+          <ul class="navbar-nav flex-row align-items-center ms-auto">
+            <li class="nav-item">
+              {% if user.is_authenticated %}
+              <div>
+                Bonjour, <span class="fw-bold">{{ user.get_username }}</span>
+                <a href="{% url 'account_logout' %}" class="btn btn-outline-primary ms-2">{% translate "Se déconnecter" %}</a>
+              </div>
+              {% else %}
+              <div>
+                <a href="{% url 'account_login' %}" type="button"
+                  class="btn btn-outline-primary me-2">{% translate 'Se connecter' %}</a>
+                <a href="{% url 'account_signup' %}" class="btn btn-primary">{% translate "S'inscrire" %}</a>
+              </div>
+              {% endif %}
+            </li>
+            <li class="nav-item d-lg-none">
+              <button class="hamburger offcanvas-nav-btn"><span></span></button>
+            </li>
+          </ul>
+          <!-- /.navbar-nav -->
+        </div>
+        <!-- /.navbar-other -->
       </div>
+      <!-- /.navbar-collapse-wrapper -->
     </div>
+    <!-- /.container -->
   </nav>
+  <!-- /.navbar -->
 </header>

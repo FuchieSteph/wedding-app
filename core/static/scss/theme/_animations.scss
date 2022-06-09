@@ -83,8 +83,22 @@
 //----------------------------------------------------------//
 //	LOADER
 //----------------------------------------------------------//
-.hero-slider:before,
-.lg-outer .lg-item:after,
+.page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $body-bg;
+  z-index: 9999;
+  transition: 0.5s all;
+  &.done {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+.page-loader:before,
+.swiper-hero:before,
 .gloader {
   position: absolute;
   content: "";
@@ -101,8 +115,7 @@
   border-radius: 50%;
   animation: loader-scale 1s ease-out infinite;
 }
-.hero-slider-wrapper.bg-dark .hero-slider:before,
-.lg-outer .lg-item:after,
+.bg-dark > .swiper-hero:before,
 .gloader {
   border-color: $white;
 }

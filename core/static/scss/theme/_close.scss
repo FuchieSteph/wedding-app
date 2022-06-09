@@ -9,15 +9,28 @@
   line-height: 1;
   @include transition($btn-transition);
   &:before {
+    background: $btn-close-bg;
     font-family: $font-family-unicons;
+    @include font-size($btn-close-font-size);
     content: $icon-close;
-    @include font-size(1.2rem);
     width: $btn-close-width;
     height: $btn-close-height;
+    line-height: $btn-close-height;
+    border-radius: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    transition: background 0.2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   &:hover {
     color: $btn-close-hover-color;
     text-decoration: none;
+    &:before {
+      background: $btn-close-hover-bg;
+    }
   }
   &:focus {
     outline: none;
@@ -30,16 +43,19 @@
   }
 }
 .btn-close-white {
-  filter: $btn-close-white-filter;
+  color: $btn-close-light-color;
+  &:before {
+    background: $btn-close-light-bg;
+  }
+  &:hover {
+    color: $btn-close-light-hover-color;
+    &:before {
+      background: $btn-close-light-hover-bg;
+    }
+  }
 }
 .modal .btn-close {
   position: absolute;
   top: 0.7rem;
-  right: 0.5rem;
-}
-[class*="offcanvas-"] .btn-close {
-  color: rgba($gray-900, 0.8);
-  &:hover {
-    color: rgba($gray-900, 1);
-  }
+  right: 0.7rem;
 }

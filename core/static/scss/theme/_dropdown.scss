@@ -40,28 +40,9 @@
           .offcanvas-footer {
             width: 100%;
           }
-          .offcanvas-header {
-            padding-top: 3rem;
-            padding-bottom: 2rem;
-            .btn-close {
-              position: absolute;
-              cursor: pointer;
-              top: 0.5rem;
-              right: 0.5rem;
-            }
-            a:focus {
-              outline: 0;
-            }
-          }
           .offcanvas-body {
-            padding-top: 0;
-            padding-bottom: 0;
             overflow-y: unset;
             flex-grow: 0;
-          }
-          &.offcanvas-end .offcanvas-header .btn-close {
-            right: auto;
-            left: 0.5rem;
           }
         }
         .navbar-collapse {
@@ -107,6 +88,9 @@
         }
         .dropend .dropdown-toggle:after {
           content: $icon-caret-down;
+        }
+        &.caret-simple .dropend .dropdown-toggle:after {
+          content: $icon-caret-simple-down;
         }
         .language-select {
           .dropdown-toggle:after {
@@ -256,8 +240,8 @@
           padding-bottom: 1.25rem;
         }
         &[class*="navbar-bg-"]:not(.fancy):not(.extended):not(.fixed) .navbar-collapse .nav-link {
-          padding-top: 1.5rem;
-          padding-bottom: 1.5rem;
+          padding-top: 1.7rem;
+          padding-bottom: 1.7rem;
         }
         &.transparent:not(.fixed) {
           padding-top: 0.3rem;
@@ -366,36 +350,6 @@
   left: auto;
   margin-top: 0;
   margin-right: 0;
-}
-//----------------------------------------------------------//
-//	OFFCANVAS
-//----------------------------------------------------------//
-.offcanvas:not(.offcanvas-nav) {
-  overflow-y: auto;
-  .offcanvas-header {
-    padding-top: 3rem;
-    padding-bottom: 1rem;
-    .btn-close {
-      position: absolute;
-      cursor: pointer;
-      padding: 0;
-      margin: 0;
-      top: 0.5rem;
-      right: 0.5rem;
-    }
-    a:focus {
-      outline: 0;
-    }
-  }
-  .offcanvas-body {
-    padding-top: 0;
-    padding-bottom: 0;
-    overflow-y: unset;
-  }
-  &.offcanvas-end .offcanvas-header .btn-close {
-    right: auto;
-    left: 0.5rem;
-  }
 }
 //----------------------------------------------------------//
 //	LANGUAGE DROPDOWN

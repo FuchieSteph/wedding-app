@@ -137,6 +137,63 @@
 .navbar-nav .dropdown.dropstart > .dropdown-toggle:after {
   @include caret-end();
 }
+@mixin caret-simple-down {
+  border: 0;
+  content: $icon-caret-simple-down;
+}
+@mixin caret-simple-up {
+  border: 0;
+  content: $icon-caret-simple-up;
+}
+@mixin caret-simple-end {
+  border: 0;
+  content: $icon-caret-simple-end;
+}
+@mixin caret-simple-start {
+  border: 0;
+  content: $icon-caret-simple-start;
+}
+@mixin caret-simple($direction: down) {
+  @if $enable-caret {
+    &::after {
+      font-family: $font-family-unicons;
+      display: inline-block;
+      @include font-size(0.85rem !important);
+      margin-left: $caret-spacing;
+      vertical-align: -3px;
+      content: "";
+      @if $direction == down {
+        @include caret-simple-down();
+      } @else if $direction == up {
+        @include caret-simple-up();
+      } @else if $direction == end {
+        @include caret-simple-end();
+      } @else if $direction == start {
+        @include caret-simple-start();
+      }
+    }
+  }
+}
+.caret-simple {
+  .dropdown-toggle {
+    @include caret-simple();
+  }
+  .dropup {
+    .dropdown-toggle {
+      @include caret-simple(up);
+    }
+  }
+  .dropend {
+    .dropdown-toggle {
+      @include caret-simple(end);
+    }
+  }
+  .dropstart {
+    .dropdown-toggle {
+      @include caret-simple(start);
+    }
+  }
+}
 //----------------------------------------------------------//
 //	SHAPES
 //----------------------------------------------------------//

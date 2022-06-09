@@ -32,6 +32,17 @@
     right: 0;
     z-index: $stretched-link-z-index + 1;
     padding: $alert-padding-y * 1.05 $alert-padding-x;
+    &:before {
+      background: none;
+      @include font-size(1.2rem);
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+    &:hover {
+      &:before {
+        background: none;
+      }
+    }
   }
   @each $color,
   $value in $theme-colors {

@@ -257,3 +257,20 @@
 .item-inner {
   padding: 1rem 0.75rem;
 }
+.swiper-thumbs-container {
+  .swiper-main {
+    position: relative;
+  }
+  .swiper:not(.swiper-thumbs) {
+    margin-bottom: 0.5rem;
+  }
+  .swiper-thumbs {
+    .swiper-slide {
+      cursor: pointer;
+      opacity: 0.7;
+      &.swiper-slide-thumb-active {
+        opacity: 1;
+      }
+    }
+  }
+}

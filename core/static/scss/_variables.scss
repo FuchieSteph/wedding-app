@@ -407,6 +407,8 @@ $btn-transition: $link-transition !default;
 //----------------------------------------------------------//
 $input-padding-y: 0.6rem !default;
 $input-padding-x: 1rem !default;
+$input-padding-y-sm: 0.4rem !default;
+$input-padding-x-sm: 0.6rem !default;
 $input-font-size: 0.75rem !default;
 $input-font-weight: 500 !default;
 $input-line-height: $input-btn-line-height !default;
@@ -415,6 +417,7 @@ $input-color: $gray-600 !default;
 $input-border-width: $input-btn-border-width !default;
 $input-height-border: $input-border-width * 2 !default;
 $input-height: add($input-line-height * 1em, add($input-padding-y * 2, $input-height-border, false)) !default;
+$input-height-sm: add($input-line-height * 1em, add($input-padding-y-sm * 2, $input-height-border, false)) !default;
 $input-border-color: rgba($shadow-border, 0.07) !default;
 $input-box-shadow: $box-shadow !default;
 $input-focus-border-color: tint-color($component-active-bg, 50%) !default;
@@ -465,10 +468,6 @@ $input-height-inner-half: add($input-line-height * .25em, $input-padding-y) !def
 $form-feedback-icon-valid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='#{$form-feedback-icon-valid-color}' d='M14.72,8.79l-4.29,4.3L8.78,11.44a1,1,0,1,0-1.41,1.41l2.35,2.36a1,1,0,0,0,.71.29,1,1,0,0,0,.7-.29l5-5a1,1,0,0,0,0-1.42A1,1,0,0,0,14.72,8.79ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z'/%3E%3C/svg%3E") !default;
 $form-select-indicator-padding: $form-select-padding-x * 2 !default;
 $form-select-feedback-icon-position: center right $form-select-indicator-padding !default;
-//----------------------------------------------------------//
-//	Z-INDEX
-//----------------------------------------------------------//
-$zindex-n: -1 !default;
 //----------------------------------------------------------//
 //	NAVS
 //----------------------------------------------------------//
@@ -660,7 +659,7 @@ $modal-xl: 1140px !default;
 //----------------------------------------------------------//
 //	OFFCANVAS
 //----------------------------------------------------------//
-$offcanvas-padding-y: 1rem !default;
+$offcanvas-padding-y: 1.5rem !default;
 $offcanvas-padding-x: 1.5rem !default;
 $offcanvas-horizontal-width: 15rem !default;
 $offcanvas-vertical-height: 30vh !default;
@@ -671,7 +670,7 @@ $offcanvas-title-line-height: 1 !default;
 $offcanvas-bg-color: $gray-900 !default;
 $offcanvas-color: $navbar-dark-color !default;
 $offcanvas-box-shadow: none !default;
-$offcanvas-backdrop-bg: transparent !default;
+$offcanvas-backdrop-bg: rgba($gray-900, 0.7) !default;
 $offcanvas-backdrop-opacity: 1 !default;
 //----------------------------------------------------------//
 //	ALERTS
@@ -697,12 +696,19 @@ $breadcrumb-border-radius: 0 !default;
 //----------------------------------------------------------//
 //	CLOSE
 //----------------------------------------------------------//
-$btn-close-width: 1.2rem !default;
+$btn-close-width: 1.8rem !default;
 $btn-close-height: $btn-close-width !default;
+$btn-close-font-size: 1.05rem !default;
 $btn-close-padding-x: 0 !default;
 $btn-close-padding-y: $btn-close-padding-x !default;
-$btn-close-color: rgba($gray-900, 0.3) !default;
-$btn-close-hover-color: rgba($gray-900, 0.5) !default;
+$btn-close-bg: rgba($black, 0.08) !default;
+$btn-close-color: $main-dark !default;
+$btn-close-hover-color: $btn-close-color;
+$btn-close-hover-bg: rgba($black, 0.11) !default;
+$btn-close-light-bg: rgba($white, 0.08) !default;
+$btn-close-light-color: $white !default;
+$btn-close-light-hover-color: $btn-close-light-color;
+$btn-close-light-hover-bg: rgba($white, 0.11) !default;
 //----------------------------------------------------------//
 //	SLIDER
 //----------------------------------------------------------//
@@ -775,3 +781,7 @@ $icon-file: "\eaed" !default;
 $icon-code: "\e952" !default;
 $icon-terminal: "\e905" !default;
 $icon-kbd: "\eba9" !default;
+$icon-caret-simple-start: "\e92f" !default;
+$icon-caret-simple-end: "\e931" !default;
+$icon-caret-simple-up: "\e932" !default;
+$icon-caret-simple-down: "\e92d" !default;

@@ -1,3 +1,7 @@
-from django.test import TestCase
+import unittest
+from . import factories
 
-# Create your tests here.
+class MyTestCase(unittest.TestCase):
+
+    def test_get_category(self):
+        categories = factories.CategoryFactory()

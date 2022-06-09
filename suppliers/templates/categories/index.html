@@ -14,52 +14,53 @@
 <!--                               Hero Banner                               -->
 <!-- ----------------------------------------------------------------------- -->
 
-<section class="wrapper bg-soft-primary">
-  <div class="container pt-10 pt-md-14">
-    <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
-      <div class="col-md-10 offset-md-1 offset-lg-0 col-lg-6 text-center text-lg-start order-2 order-lg-0"
-        data-cues="slideInDown" data-group="page-title" data-delay="600">
-        <h1 class="display-1 mb-5 mx-md-n5 mx-lg-0">
-          {% blocktranslate %}Tout pour <br /> organiser le <span class="text-orange"> mariage</span>
-          <br /> de vos <span class="text-orange">rêves</span>{% endblocktranslate %}
-        </h1>
-        <p class="lead fs-lg mb-7">{% blocktranslate %}Retrouvez toutes les ressources pour organiser un mariage
-          parfait.{% endblocktranslate %}</p>
-
-          <div class="d-flex">
-            <div class="form-floating mb-4 me-3">
-              <input id="textInputExample" type="text" class="form-control" placeholder="Text Input">
-              <label for="textInputExample">Je recherche...</label>
-            </div>
-            <div class="form-floating mb-4 me-3">
-              <input id="textInputExample" type="text" class="form-control" placeholder="Text Input">
-              <label for="textInputExample">Où</label>
-            </div>
-            <a href="#" class="btn btn-circle btn-primary btn-lg"><i class="uil uil-search"></i></a>
-          </div>
-          
+<section class="wrapper bg-gradient-primary">
+  <div class="container py-14 pt-md-15 pb-md-15">
+    <div class="row text-center">
+      <div class="col-lg-9 col-xxl-7 mx-auto" data-cues="zoomIn" data-group="welcome" data-interval="-200">
+        <h1 class="display-1 mb-4">{% blocktranslate %}Tout pour organiser <br /> le <span class="text-orange"> mariage</span>
+          de vos <span class="text-orange">rêves</span>{% endblocktranslate %}</h1>
+        <p class="lead fs-24 lh-sm px-md-5 px-xl-15 px-xxl-10 mb-7">{% blocktranslate %}Retrouvez toutes les ressources pour organiser un mariage parfait.{% endblocktranslate %}</p>
       </div>
-      <div class="col-lg-6" data-cue="slideInDown">
-        <figure><img class="w-auto" src="{% static 'img/assets/test15.png' %}"
-            srcset="{% static 'img/assets/hero.png' %}" alt="" /></figure>
-      </div>
+      <!-- /column -->
     </div>
+    <!-- /.row -->
+    <div class="d-flex justify-content-center" data-cues="slideInDown" data-group="join" data-delay="900">
+      <div class="d-flex">
+        <div class="form-floating mb-4 me-3">
+          <input id="textInputExample" type="text" class="form-control" placeholder="Text Input">
+          <label for="textInputExample">Je recherche...</label>
+        </div>
+        <div class="form-floating mb-4 me-3">
+          <input id="textInputExample" type="text" class="form-control" placeholder="Text Input">
+          <label for="textInputExample">Où</label>
+        </div>
+        <a href="#" class="btn btn-circle btn-primary btn-lg"><i class="uil uil-search"></i></a>
+      </div>
+      
+    </div>
+    <!-- /div -->
+    <div class="row mt-12" data-cue="fadeIn" data-delay="1600">
+      <div class="col-lg-6 mx-auto">
+        <figure><img class="img-fluid" src="{% static 'img/assets/index_features.png' %}" srcset="{% static 'img/assets/index_features.png' %}" alt=""></figure>
+      </div>
+      <!-- /column -->
+    </div>
+    <!-- /.row -->
   </div>
+  <!-- /.container -->
 </section>
+<!-- /section -->
 
 <section class="wrapper bg-light">
-  <div class="container pt-14 pt-md-16 pb-9 pb-md-11 pb-md-17">
+  <div class="container">
 
     <!-- ----------------------------------------------------------------------- -->
     <!--                                Features                                 -->
     <!-- ----------------------------------------------------------------------- -->
 
-    <div class="row gx-lg-8 gx-xl-12 gy-10 mb-14 mb-md-17 align-items-center">
+    <div class="row gx-lg-0 gy-10 mb-15 mb-md-18 align-items-center">
       <div class="col-lg-7">
-        <figure><img class="w-auto" src="{% static 'img/assets/test10.png' %}"
-            srcset="{% static 'img/assets/index_features.png' %}" alt="" /></figure>
-      </div>
-      <div class="col-lg-5">
         <h3 class="display-4 mb-7">{% blocktranslate %}Organiser votre mariage n'aura jamais été aussi
           simple{% endblocktranslate %}</h3>
         <div class="d-flex flex-row mb-6">
@@ -88,10 +89,14 @@
           </div>
           <div>
             <h4 class="mb-1">{% blocktranslate %}Préparez votre mariage au jour le jour{% endblocktranslate %}</h4>
-            <p class="mb-0">{% blocktranslate %}Créez votre checklist personnalisée ou non et soyez prêt pour le jour J
+            <p class="mb-0">{% blocktranslate %}Créez votre checklist personnalisée et soyez prêt pour le jour J
               ! {% endblocktranslate %}</p>
           </div>
         </div>
+      </div>
+      <div class="col-lg-5 p-10">
+        <figure><img class="w-auto" src="{% static 'img/assets/hero.png' %}' %}"
+            srcset="{% static 'img/assets/hero.png' %}" alt="" /></figure>
       </div>
      </div>
 
@@ -99,12 +104,12 @@
 
     {% if categories %}
 
-    <div class="d-flex me-4">
+    <div class="d-flex me-4 flex-wrap">
       {% for category in categories %}
 
-      <div class="d-flex col-lg-2 align-items-center text-center flex-column">
+      <div class="d-flex mb-5 col-lg-2 align-items-center text-center flex-column">
         <a href="{% url 'suppliers:category' category.slug category.id %}" class="card-link fw-bold">
-          <img src="{% get_media_prefix %}{{ category.icon }}" style="width:70px;" /><br /><br />
+          <img src="{% get_media_prefix %}{{ category.icon }}" style="width:70px;" class="block mb-2" /><br />
           {{ category.name }}
         </a>
       </div>

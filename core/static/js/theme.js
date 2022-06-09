@@ -9,7 +9,7 @@ var theme = {
   init: function () {
     theme.stickyHeader();
     theme.subMenu();
-    //theme.offCanvas();
+    theme.offCanvas();
     theme.isotope();
     theme.onepageHeaderOffset();
     theme.anchorSmoothScroll();
@@ -23,7 +23,8 @@ var theme = {
     theme.lightbox();
     theme.plyr();
     theme.progressBar();
-    //theme.pageProgress();
+    theme.loader();
+    theme.pageProgress();
     theme.counterUp();
     theme.bsTooltips();
     theme.bsPopovers();
@@ -302,7 +303,7 @@ var theme = {
   swiperSlider: function() {
     var carousel = document.querySelectorAll('.swiper-container');
     for(var i = 0; i < carousel.length; i++) {
-      var slider1 = carousel[i]
+      var slider1 = carousel[i];
       slider1.classList.add('swiper-container-' + i);
       var controls = document.createElement('div');
       controls.className = "swiper-controls";
@@ -333,7 +334,25 @@ var theme = {
       var sliderAutoHeight = slider1.getAttribute('data-autoheight') === 'true';
       var sliderMargin = slider1.getAttribute('data-margin') ? slider1.getAttribute('data-margin') : 30;
       var sliderLoop = slider1.getAttribute('data-loop') === 'true';
-      var swiper = slider1.querySelector('.swiper');
+      var swiper = slider1.querySelector('.swiper:not(.swiper-thumbs)');
+      var swiperTh = slider1.querySelector('.swiper-thumbs');
+      var sliderTh = new Swiper(swiperTh, {
+        slidesPerView: 5,
+        spaceBetween: 10,
+        loop: false,
+        threshold: 2
+      });
+      if (slider1.getAttribute('data-thumbs') === 'true') {
+        var thumbsInit = sliderTh;
+        var swiperMain = document.createElement('div');
+        swiperMain.className = "swiper-main";
+        swiper.parentNode.insertBefore(swiperMain, swiper);
+        swiperMain.appendChild(swiper);
+        slider1.removeChild(controls);
+        swiperMain.appendChild(controls);
+      } else {
+        var thumbsInit = null;
+      }
       var slider = new Swiper(swiper, {
         on: {
           beforeInit: function() {
@@ -393,7 +412,10 @@ var theme = {
         navigation: {
           prevEl: slider1.querySelector('.swiper-button-prev'),
           nextEl: slider1.querySelector('.swiper-button-next'),
-        }
+        },
+        thumbs: {
+          swiper: thumbsInit,
+        },
       });
     }
   },
@@ -509,6 +531,23 @@ var theme = {
     });
   },
   /**
+   * Loader
+   * 
+   */
+  loader: function () {
+    var preloader = document.querySelector('.page-loader');
+    if(preloader != null) {
+      document.body.onload = function(){
+        setTimeout(function() {
+          if( !preloader.classList.contains('done') )
+          {
+            preloader.classList.add('done');
+          }
+        }, 1000)
+      }
+    }
+  },
+  /**
    * Page Progress
    * Shows page progress on the bottom right corner of pages
    */
@@ -576,7 +615,17 @@ var theme = {
   bsTooltips: function () {
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-      return new bootstrap.Tooltip(tooltipTriggerEl)
+      return new bootstrap.Tooltip(tooltipTriggerEl, {
+        trigger: 'hover'
+      })
+    });
+    var tooltipTriggerWhite = [].slice.call(document.querySelectorAll('[data-bs-toggle="white-tooltip"]'))
+    var tooltipWhite = tooltipTriggerWhite.map(function(tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl, {
+        customClass: 'white-tooltip',
+        trigger: 'hover',
+        placement: 'left'
+      })
     })
   },
   /**
@@ -606,13 +655,20 @@ var theme = {
     var clientWidth = document.body.clientWidth;
     var scrollSize = innerWidth - clientWidth;
     var myModalEl = document.querySelectorAll('.modal');
+    var navbarFixed = document.querySelector('.navbar.fixed');
     var pageProgress = document.querySelector('.progress-wrap');
     function setPadding() {
+      if(navbarFixed != null) {
+        navbarFixed.style.paddingRight = scrollSize + 'px';
+      }
       if(pageProgress != null) {
         pageProgress.style.marginRight = scrollSize + 'px';
       }
     }
     function removePadding() {
+      if(navbarFixed != null) {
+        navbarFixed.style.paddingRight = '';
+      }
       if(pageProgress != null) {
        pageProgress.style.marginRight = '';
       }
